@@ -98,6 +98,7 @@ function get_executable_name()
 		app) echo "tinyara_user.bin";;
 		micom) echo "micom";;
 		wifi) echo "wifi";;
+		userfs) echo "imxrt1020-evk_smartfs.bin";;
 		*) echo "No Binary Match"
 		exit 1
 	esac
@@ -245,6 +246,13 @@ ERASE)
 		done
 		shift
 	done
+	;;
+#Download SMARTFS Partition
+userfs)
+	gidx=${#parts[@]}-1
+	flash_erase ${offsets[$gidx]} ${sizes[$gidx]}
+	exe_name=$(get_executable_name ${parts[$gidx]})
+	flash_write ${offsets[$gidx]} ${OUTBIN_PATH}/${exe_name}
 	;;
 #Download <list of partitions>
 *)
