@@ -1663,7 +1663,6 @@ static int smartfs_statfs(struct inode *mountpt, struct statfs *buf)
 	smartfs_semtake(fs);
 
 	/* Implement the logic!! */
-
 	memset(buf, 0, sizeof(struct statfs));
 	buf->f_type = SMARTFS_MAGIC;
 
